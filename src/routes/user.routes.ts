@@ -1,16 +1,16 @@
 import express from 'express'
-import { generateUser } from '../controllers/user.controllers'
+import { allUsers, deleteUser, generateUser, updateEmail, updatePassword, userByEmail } from '../controllers/user.controllers'
 
 const router = express.Router()
 
 router.post('/crear_usuario', generateUser)
-router.get('/all_users', () => { console.log('Traer todos los usuarios!') })
+router.get('/all_users', allUsers)
 //get por correo:
-router.get('/usuario:email', () => { console.log('Obtener usuario por correo') })
+router.get('/usuario/:email', userByEmail)
 //editar correo
-router.put('/editar_email:email', () => { console.log('Editar correo electronico!') })
+router.put('/editar_email/:email', updateEmail)
 //editar contraseña
-router.put('/editar_password:password', () => { console.log('Editar contraseña!') })
-router.delete('/borrar_usuario', () => { console.log('Borrar usuario!') })
+router.put('/editar_password/:email', updatePassword)
+router.delete('/borrar_usuario/:email', deleteUser)
 
 export default router
